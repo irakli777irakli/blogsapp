@@ -1,0 +1,6 @@
+
+<div class="topic-list">
+    <app-topic-card 
+        *ngFor="let topic of topicService.currentTopics$ | async" [topic]="topic">
+    </app-topic-card>
+</div>

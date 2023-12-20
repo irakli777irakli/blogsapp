@@ -1,0 +1,20 @@
+
+<div *ngIf="blog" class="blog">
+    <div class="blog-img-wrapper">
+        <img class="blog-img" src="{{blog.image}}" alt="{{blog.author}}" />
+    </div>
+    <div class="author-and-date">
+        <p class="blog-author">{{blog.author}}</p>
+        <span class="blog-pubDate">{{blog.publish_date}}</span>
+    </div>
+    <div class="title-and-topics">
+        <h4 class="blog-title">{{blog.title}}</h4>
+        <div  class="blogflex">
+            <app-topic-card *ngFor="let category of blog.categories" [topic]="category" ></app-topic-card>
+        </div>
+    </div>
+    <p class="blog-description">{{blog.description.substring(0,120)}}</p>
+    <button class="see-more">სრულად ნახვა <span class="rotate-symbol">&uarr;</span></button>
+
+
+</div>

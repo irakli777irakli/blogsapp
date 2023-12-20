@@ -1,0 +1,11 @@
+
+
+
+.blogs-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 3.2rem;
+    margin-top: 9.6rem;
+    padding: 8rem;
+
+}

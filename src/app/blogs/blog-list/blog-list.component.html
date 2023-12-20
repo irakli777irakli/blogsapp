@@ -1,0 +1,10 @@
+
+
+<div class="blogs-wrapper">
+    
+    <app-blog-card *ngFor="let blog of blogService.currentBlogs | async" [blog]="blog"></app-blog-card>
+    
+</div>
+
+
+

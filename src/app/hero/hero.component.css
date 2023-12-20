@@ -1,0 +1,28 @@
+
+
+.hero {
+    margin-top: 1.6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.hero-heading {
+    line-height: 7.2rem;
+    font-weight: 700;
+    font-family: 'firago', sans-serif ;
+    font-size: 6.4rem;
+    color: #1A1A1F;
+    justify-items: center;
+    align-items: center;
+    padding: 8rem;
+}
+.hero-heading-wrapper {
+    align-self: center;
+    justify-self: left;
+}
+
+.hero-img-wrapper {
+    align-self: center;
+    justify-self: center;
+}
