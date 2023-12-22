@@ -1,5 +1,5 @@
 <app-nav></app-nav>
-
+<app-modal *ngIf="modalService.currentModalState$ | async"></app-modal>
 
 
 <router-outlet></router-outlet>

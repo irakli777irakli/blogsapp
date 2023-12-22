@@ -12,6 +12,9 @@ import { TopicCardComponent } from './topics/topic-card/topic-card.component';
 import { BlogListComponent } from './blogs/blog-list/blog-list.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { BlogCardComponent } from './blogs/blog-card/blog-card.component';
+import { ModalComponent } from './modal/modal.component';
+import { InputComponent } from './input/input.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,12 +25,16 @@ import { BlogCardComponent } from './blogs/blog-card/blog-card.component';
     TopicListComponent,
     TopicCardComponent,
     BlogListComponent,
-    BlogCardComponent
+    BlogCardComponent,
+    ModalComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

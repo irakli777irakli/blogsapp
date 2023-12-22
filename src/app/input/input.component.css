@@ -1,0 +1,22 @@
+
+
+
+
+.validation-error {
+    color: red;
+    font-size: 1.4rem;
+    font-family: 'firago', sans-serif ;
+    font-weight: 500;
+    
+}
+
+input {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 1.8rem;
+    padding: 1.2rem 1.8rem;
+
+}
+

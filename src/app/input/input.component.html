@@ -1,0 +1,11 @@
+<input [type]="type" [formControl]="control" [placeholder]="placeholder"
+    />
+
+
+    <ng-container *ngIf="control.touched && control.dirty">
+        <!-- email validation -->
+        <p class="validation-error" *ngIf="control.errors?.['pattern']">
+            ელ-ფოსტა არ მოიძებნა
+        </p>
+    
+    </ng-container>

@@ -1,6 +1,7 @@
 
 
 .navbar {
+    background-color: #E4E3EB;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,4 +16,7 @@
     color: #fff;
     font-family: 'firago', sans-serif ;
     font-size: 1.6rem;
+    outline: none;
+    border: none;
+
 }

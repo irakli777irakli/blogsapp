@@ -1,0 +1,29 @@
+
+<div class="modal">
+    <div class="inner-modal">
+        <span (click)="closeModal()" class="modal-close">x</span>
+        <div class="modal-success-content" *ngIf="displayOKMsg">
+            <img src="../../assets/tick-circle.png" alt="okstatus"/>
+            <h3 class="modal-heading">წარმატებული ავტორიზაცია</h3>
+        </div>
+        <div class="modal-from-content" *ngIf="!displayOKMsg">
+            <h3 class="modal-heading">შესვლა</h3>
+            <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="login()" class="modal-form">
+                <span>ელ-ფოსტა</span>
+                <app-input 
+                [control]="email"
+                [placeholder]="'Example@redberry.ge'" 
+                [type]="'email'">
+            </app-input>
+        </form>
+        
+        </div>    
+        <button *ngIf="!displayOKMsg" form="loginForm" type="submit" class="login" [disabled]="loginForm.invalid">
+            შესვლა
+        </button>
+
+        <button *ngIf="displayOKMsg" type="button" class="login" (click)="closeModalAfterLogin()">
+            კარგი
+        </button>
+    </div>
+</div>

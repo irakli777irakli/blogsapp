@@ -1,5 +1,6 @@
 
 .topic-card-wrapper {
+    min-width: 10rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,11 +8,10 @@
 
 .topic-card-btn {
     font-size: 1.6rem;
-    padding: 8px;
     border-radius: 100px;
     border: none;
     cursor: pointer;
-    font-family: 'firago', sans-serif ;
+    font-family: 'firago', sans-serif;
     font-weight: 600;
 }
 

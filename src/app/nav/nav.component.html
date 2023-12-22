@@ -3,6 +3,10 @@
         <img src="../../assets/LOGO-02 3.png" alt="logo"/>
     </div>
     <div>
-        <button class="nav-btn">შესვლა</button>
+        <div>
+            
+            <button *ngIf="!(accountService.currentUser$ | async)" class="nav-btn" (click)="openModal()">შესვლა</button>
+            <button *ngIf="(accountService.currentUser$ | async)" class="nav-btn" >დამატება</button>
+        </div>
     </div>
 </nav>
