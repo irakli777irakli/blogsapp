@@ -1,0 +1,48 @@
+
+<div class="add-blog">
+    <div class="add-blog-inner" *ngIf="addBlogForm">
+        <h3 class="add-blog-header">ბლოგის დამატება</h3>
+        <form [formGroup]="addBlogForm" (ngSubmit)="addBlog()" >
+            <div>
+                <label >აირჩიეთ ფოტო</label>
+                <app-input [control]="blogImage"
+                    [placeholder]="'ჩააგდეთ ფაილი'"
+                    [type]="'file'"></app-input>
+            </div>
+            <div>
+                <div>
+                    <label>ავტორი *</label>
+                    <app-input [control]="author" 
+                        [placeholder]="'შეიყვანეთ ავტორი'"
+                    ></app-input>
+                </div>
+                <div>
+                    <label>სათაური *</label>
+                    <app-input [control]="title" 
+                        [placeholder]="'შიეყვანეთ სათაური'">
+                    </app-input>
+                </div>
+            </div>
+            <app-input [control]="blogDescription"
+                [placeholder]="'შეიყვანეთ აღწერა'"></app-input>
+            <div>
+                <div>
+                    <label>გამოქვეყნების თარიღი *</label>
+                    <app-input [control]="publicationDate"
+                        [placeholder]="'12/12/2023'" [type]="'date'">
+                    </app-input>
+                </div>
+                <div>
+                    <label>კატეგორია *</label>
+                    <select [formControl]="categories">
+                        <option value="" disabled selected>აირჩიე კატეგორია</option>
+                        <option *ngFor="let opt of addBlogForm.get('categories')?.value"
+                            [value]="opt.id">
+                            {{opt.title}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

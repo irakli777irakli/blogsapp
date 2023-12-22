@@ -27,18 +27,27 @@
 
 }
 
+.modal-success-content {
+    margin-top: 6.4rem;
+}
+.success-symbol-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.4rem;
+}
+
+.success-symbol {
+    text-align: center;
+}
+
+
 .modal-form-content {
     margin-top: 4.8rem;
     
 }
 
-.modal-heading {
-    font-size: 3rem;
-    font-family: 'firago', sans-serif ;
-    font-weight: 500;
-    color: #1A1A1F;
-    text-align: center;
-}
+
 
 .modal-form {
    margin-top: 3rem;

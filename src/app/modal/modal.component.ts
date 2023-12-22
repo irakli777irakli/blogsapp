@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from '../_services/modal.service';
 import { AccountService } from '../_services/account.service';
+import { BtnActionTypesEnum } from '../_helpers/btnAction-helper';
 
 @Component({
   selector: 'app-modal',
@@ -9,7 +10,12 @@ import { AccountService } from '../_services/account.service';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  
+  closeModalAfterLoginbtn = BtnActionTypesEnum.CLOSEMODALAFTERLOGIN;
+  loginBtn = BtnActionTypesEnum.CLICKLOGIN;
+  displayOKMsg = false;
+
+
+
   email = new FormControl('',[
     Validators.required,
     Validators.email,
@@ -19,7 +25,6 @@ export class ModalComponent implements OnInit {
     email: this.email
   });
 
-  displayOKMsg = false;
 
   constructor(private modalService: ModalService,private accountService:AccountService) {}
 
@@ -40,6 +45,9 @@ export class ModalComponent implements OnInit {
       .subscribe({
         next: () => {
           this.displayOKMsg = true;
+        },
+        error: err => {
+          this.loginForm.get('email')?.setErrors({'emailNotFound': 'ელ-ფოსტა არ მოიძებნა'} )
         }
       })
       

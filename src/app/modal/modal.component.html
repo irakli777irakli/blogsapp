@@ -3,11 +3,17 @@
     <div class="inner-modal">
         <span (click)="closeModal()" class="modal-close">x</span>
         <div class="modal-success-content" *ngIf="displayOKMsg">
-            <img src="../../assets/tick-circle.png" alt="okstatus"/>
-            <h3 class="modal-heading">წარმატებული ავტორიზაცია</h3>
+            <div class="success-symbol-wrapper">
+                <img class="success-symbol" src="../../assets/tick-circle.png" alt="okstatus"/>
+            </div>
+            <app-heading 
+            [headingText]="'წარმატებული ავტორიზაცია'"
+            [headingStyle]="'heading-sm margin-bottom-lg'"></app-heading>
         </div>
         <div class="modal-from-content" *ngIf="!displayOKMsg">
-            <h3 class="modal-heading">შესვლა</h3>
+            <app-heading 
+            [headingText]="'შესვლა'"
+            [headingStyle]="'heading-md'"></app-heading>
             <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="login()" class="modal-form">
                 <span>ელ-ფოსტა</span>
                 <app-input 
@@ -17,13 +23,38 @@
             </app-input>
         </form>
         
-        </div>    
-        <button *ngIf="!displayOKMsg" form="loginForm" type="submit" class="login" [disabled]="loginForm.invalid">
-            შესვლა
-        </button>
+        </div>
+        <!-- trick to get aroung submiting the form from component -->
+        <app-generic-btn
+            [btnText]="'შესვლა'"
+            [btnStyle]="'btn-purple btn-lg margin-top-lg'"
+            [showBtn]="!displayOKMsg"
+            [whichFormToSubmit]="'loginForm'"
+            [typeOfBnt]="'submit'"
+            [isFormDisabled]="loginForm.invalid"
+            [btnTypes]="loginBtn"
+            (submitLoginForm)="login()"
+        >
+        </app-generic-btn>
 
-        <button *ngIf="displayOKMsg" type="button" class="login" (click)="closeModalAfterLogin()">
+        <app-generic-btn
+            [btnText]="'კარგი'"
+            [btnStyle]="'btn-purple btn-lg margin-top-lg'"
+            [showBtn]="displayOKMsg"
+            [whichFormToSubmit]="'loginForm'"
+            [typeOfBnt]="'button'"
+            [isFormDisabled]="loginForm.invalid"
+            [btnTypes]="closeModalAfterLoginbtn"
+            (closeModalAfterLogin)="closeModalAfterLogin()"
+        >
+        </app-generic-btn>
+
+        <!-- <button *ngIf="!displayOKMsg" form="loginForm" type="submit" class="login" [disabled]="loginForm.invalid">
+            შესვლა
+        </button> -->
+
+        <!-- <button *ngIf="displayOKMsg" type="button" class="login" (click)="closeModalAfterLogin()">
             კარგი
-        </button>
+        </button> -->
     </div>
 </div>

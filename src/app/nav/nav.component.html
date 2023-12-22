@@ -4,9 +4,23 @@
     </div>
     <div>
         <div>
+            <app-generic-btn 
+                [btnText]="'შესვლა'"
+                [btnStyle]="'btn-purple'"
+                [showBtn]="!(accountService.currentUser$ | async)"
+                [btnTypes]="btnType"
+                (openModal)="openModal()">
+            </app-generic-btn>
+            <app-generic-btn 
+                [btnText]="'დამატება'"
+                [btnStyle]="'btn-purple'"
+                [showBtn]="(accountService.currentUser$ | async)"
+                [btnLink]="'/add-blog'">
+            </app-generic-btn>
             
-            <button *ngIf="!(accountService.currentUser$ | async)" class="nav-btn" (click)="openModal()">შესვლა</button>
-            <button *ngIf="(accountService.currentUser$ | async)" class="nav-btn" >დამატება</button>
+            <!-- <button *ngIf="!(accountService.currentUser$ | async)" class="nav-btn" (click)="openModal()">შესვლა</button>
+            <button *ngIf="(accountService.currentUser$ | async)" class="nav-btn" 
+                [routerLink]="'/add-blog'">დამატება</button> -->
         </div>
     </div>
 </nav>

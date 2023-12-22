@@ -1,0 +1,7 @@
+
+
+<button [ngClass]="btnStyle" [routerLink]="btnLink" *ngIf="showBtn" (click)="performAction()" 
+    type="{{typeOfBnt === 'submit' ? 'sumbit' : 'btn'}}" [disabled]="isFormDisabled" 
+    >
+    {{btnText}}
+</button>

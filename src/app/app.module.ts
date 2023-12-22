@@ -15,6 +15,8 @@ import { BlogCardComponent } from './blogs/blog-card/blog-card.component';
 import { ModalComponent } from './modal/modal.component';
 import { InputComponent } from './input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddBlogComponent } from './add-blog/add-blog.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,14 +29,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BlogListComponent,
     BlogCardComponent,
     ModalComponent,
-    InputComponent
+    InputComponent,
+    AddBlogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

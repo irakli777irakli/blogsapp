@@ -1,0 +1,33 @@
+
+
+.shared, .heading-lg, .heading-md, .heading-sm {
+    font-family: 'firago', sans-serif ;
+    color: #1A1A1F;
+
+}
+
+.heading-lg {
+    line-height: 7.2rem;
+    font-weight: 700;
+    font-size: 6.4rem;
+    justify-items: center;
+    align-items: center;
+    padding: 8rem;
+}
+
+.heading-md {
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.heading-sm {
+    font-size: 2.4rem;
+    font-weight: 500;
+    text-align: center;
+    
+}
+
+.margin-bottom-lg {
+    margin-bottom: 3.2rem;
+}

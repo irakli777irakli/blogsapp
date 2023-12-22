@@ -1,10 +1,17 @@
 <input [type]="type" [formControl]="control" [placeholder]="placeholder"
     />
 
+    <ng-container *ngIf="control.hasError('emailNotFound')">
+        
+        <p class="validation-error" >
+            ელ-ფოსტა არ მოიძებნა
+        </p>
+    </ng-container>
 
     <ng-container *ngIf="control.touched && control.dirty">
         <!-- email validation -->
-        <p class="validation-error" *ngIf="control.errors?.['pattern']">
+        <p class="validation-error" 
+            *ngIf="control.errors?.['pattern'] || control.errors?.['email'] || control.errors?.['required']">
             ელ-ფოსტა არ მოიძებნა
         </p>
     
