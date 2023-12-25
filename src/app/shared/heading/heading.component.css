@@ -28,6 +28,20 @@
     
 }
 
+.heading-extra-sm {
+    font-size: 1.8rem;
+    font-weight: 500;
+    
+}
+
+.align-normal {
+    text-align: start;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
 .margin-bottom-lg {
     margin-bottom: 3.2rem;
 }

@@ -17,10 +17,13 @@ export class AuthorValidator {
 }
 
 
-export function atLeastTwoWordsValidator(control: FormControl): { [key: string]: any } | null {
-    const value = control.value;
-    if (value && value.trim().split(/\s+/).length < 2) {
+export function atLeastTwoWordsValidator(control: FormControl): { [key: string] : any} | null  {
+    const value = control.value.trim()?.replace(/\s+/g, ' ');
+    if (value && value.split(' ').length < 2) {
       return { atLeastTwoWords: true };
     }
     return null;
   }
+
+
+

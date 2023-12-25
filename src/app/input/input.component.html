@@ -11,8 +11,79 @@
     <ng-container *ngIf="control.touched && control.dirty">
         <!-- email validation -->
         <p class="validation-error" 
-            *ngIf="control.errors?.['pattern'] || control.errors?.['email'] || control.errors?.['required']">
+            *ngIf="control.errors?.['pattern'] || (control.errors?.['email'] && !customEmailValidator)">
             ელ-ფოსტა არ მოიძებნა
         </p>
+        
+        <ng-container *ngIf="control.errors?.['required']; else requiredSuccess">
+            <p class="validation-error">
+                სავალდებულოა
+            </p>
+        </ng-container>
+        <ng-template #requiredSuccess>
+            <p class="validation-success" 
+                *ngIf="requiredValidator && control.value?.length > 0">
+                სავალდებულოა
+            </p>
+        </ng-template>
+
     
+        <ng-container *ngIf="control.errors?.['noEmptySpace']; else noEmptySpaceSuccess">
+            <p class="validation-error">
+            არა ცარიელი სიმბოლოები
+            </p>
+        </ng-container>
+        <ng-template #noEmptySpaceSuccess>
+            <p class="validation-success"
+            *ngIf="noSpaceValidator && control.value?.length > 0">
+                არა ცარიელი სიმბოლოები
+            </p>
+        </ng-template>
+        
+
+        <ng-container *ngIf="control.errors?.['onlyGeorgianLetters']; else onlyGeorgianLettersSuccess">
+            <p class="validation-error">
+                მხოლოდ ქართული სიმბოლოები
+            </p>
+        </ng-container>
+        <ng-template #onlyGeorgianLettersSuccess>
+            <p class="validation-success" 
+                *ngIf="georgianLanguageValidator && control.value?.length > 0">
+                მხოლოდ ქართული სიმბოლოები
+            </p>
+        </ng-template>
+        
+
+        <ng-container *ngIf="control.errors?.['trimmedMinLength']; else minlengthSuccess">
+            <p class="validation-error">
+                მინიმუმ {{control.errors?.['trimmedMinLength'].requiredLength}} სიმბოლო
+            </p>        
+        </ng-container>
+        <ng-template #minlengthSuccess>
+            <p class="validation-success"
+                *ngIf="(trimmed2validator || trimmed4validator) && control.value?.length > 0">
+                მინიმუმ {{minimumLength}} სიმბოლო
+            </p>  
+        </ng-template>
+
+        
+        <ng-container *ngIf="control.errors?.['atLeastTwoWords']; else atLeastTwoWordsSuccess">
+            <p class="validation-error" >
+                მინიმუმ ორი სიტყვა
+            </p>
+        </ng-container>
+        <ng-template #atLeastTwoWordsSuccess >
+            <p class="validation-success" 
+            *ngIf="atLeastTwoWordsValidator && control.value?.length > 0">
+                მინიმუმ ორი სიტყვა
+            </p>
+        </ng-template>
+
+        <ng-container *ngIf="control.errors?.['invalidEmail'] && customEmailValidator">
+            <p class="validation-error" >
+                მეილი უნდა მთავრდებოდეს @redberry.ge-ით
+            </p>        
+        </ng-container>
+        
+        
     </ng-container>

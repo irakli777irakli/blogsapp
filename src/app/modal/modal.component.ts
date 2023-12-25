@@ -11,7 +11,6 @@ import { BtnActionTypesEnum } from '../_helpers/btnAction-helper';
 })
 export class ModalComponent implements OnInit {
   closeModalAfterLoginbtn = BtnActionTypesEnum.CLOSEMODALAFTERLOGIN;
-  loginBtn = BtnActionTypesEnum.CLICKLOGIN;
   displayOKMsg = false;
 
 
@@ -45,6 +44,7 @@ export class ModalComponent implements OnInit {
       .subscribe({
         next: () => {
           this.displayOKMsg = true;
+          localStorage.setItem('auth', JSON.stringify(true));
         },
         error: err => {
           this.loginForm.get('email')?.setErrors({'emailNotFound': 'ელ-ფოსტა არ მოიძებნა'} )

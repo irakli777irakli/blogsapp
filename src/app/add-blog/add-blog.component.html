@@ -1,39 +1,107 @@
 
+<div class="arrow-left">
+    <div class="arr left" [routerLink]="'/'"><div></div></div>
+</div>
 <div class="add-blog">
     <div class="add-blog-inner" *ngIf="addBlogForm">
-        <h3 class="add-blog-header">ბლოგის დამატება</h3>
-        <form [formGroup]="addBlogForm" (ngSubmit)="addBlog()" >
-            <div>
-                <label >აირჩიეთ ფოტო</label>
-                <app-input [control]="blogImage"
-                    [placeholder]="'ჩააგდეთ ფაილი'"
-                    [type]="'file'"></app-input>
+        <app-heading 
+            [headingText]="'ბლოგის დამატება'"
+            [headingStyle]="'heading-sm align-normal font-bold '">
+        </app-heading>
+
+        <form [formGroup]="addBlogForm" (ngSubmit)="addBlog()" class="add-blog-form"
+            #localForm="ngForm">
+            <p class="upload-photo-title">ატვირთეთ ფოტო</p>
+            <div *ngIf="uploadedfile" class="uploaded-file">
+                <div class="img-and-imgName">
+                    <img class="dummy-img" src="../../assets/gallery.png" alt="{{uploadedfile.name}}" />
+                    <span>{{uploadedfile.name}}</span>
+                </div>
+                <span (click)="removeImg()">x</span>
             </div>
-            <div>
-                <div>
-                    <label>ავტორი *</label>
+            <div class="blog-img-upload-wrapper" *ngIf="!uploadedfile">
+                <label class="file-input-label" for="file"></label>
+                <input id="file" type="file" 
+                    formControlName="blogImage"
+                    placeholder="ჩააგდეთ ფაილი" 
+                    class="fileInput"
+                    (change)="onFileSelected($event)"/>
+                <div class="blog-photo-and-text-wrapper">
+                    <img src="../../assets/folder-add.png" alt="add photo" />
+                    <p>ჩააგდეთ ფაილი აქ ან <span>აირჩიეთ ფაილი</span></p>
+                </div>
+                <span *ngIf="blogImage.touched && blogImage.dirty && blogImage.errors?.['fileRequired']" class="validation-error">
+                    სურათი აუცილებელია
+                </span>
+    
+            </div>
+
+            <div class="authro-and-title-wrapper">
+                <div class="author-input">
+                    <app-heading 
+                        [headingText]="'ავტორი *'"
+                        [headingStyle]="'heading-extra-sm align-normal'">
+                    </app-heading>
                     <app-input [control]="author" 
+                        [minimumLength]="4"
                         [placeholder]="'შეიყვანეთ ავტორი'"
-                    ></app-input>
+                        [requiredValidator]="true"
+                        [trimmed4validator]="true"
+                        [georgianLanguageValidator]="true"
+                        [atLeastTwoWordsValidator]="true"
+                        [noSpaceValidator]="true"
+                    >
+                    </app-input>
                 </div>
-                <div>
-                    <label>სათაური *</label>
+                <div class="title-input">
+                    <app-heading 
+                        [headingText]="'სათაური *'"
+                        [headingStyle]="'heading-extra-sm align-normal'">
+                    </app-heading>
                     <app-input [control]="title" 
-                        [placeholder]="'შიეყვანეთ სათაური'">
+                        [minimumLength]="2"
+                        [placeholder]="'შიეყვანეთ სათაური'"
+                        [requiredValidator]="true"
+                        [trimmed2validator]="true"
+                        [noSpaceValidator]="true"
+                        >
                     </app-input>
                 </div>
             </div>
-            <app-input [control]="blogDescription"
-                [placeholder]="'შეიყვანეთ აღწერა'"></app-input>
-            <div>
-                <div>
-                    <label>გამოქვეყნების თარიღი *</label>
-                    <app-input [control]="publicationDate"
-                        [placeholder]="'12/12/2023'" [type]="'date'">
-                    </app-input>
+            <div class="description-wrapper">
+                <app-heading 
+                        [headingText]="'აღწერა *'"
+                        [headingStyle]="'heading-extra-sm align-normal'">
+                </app-heading>
+                <app-input [control]="blogDescription"
+                    [minimumLength]="2"
+                    [placeholder]="'შეიყვანეთ აღწერა'"
+                    [requiredValidator]="true"
+                    [trimmed2validator]="true"
+                    [noSpaceValidator]="true"
+                >
+                </app-input>
+            </div>
+            <div class="pubDate-and-categories">
+                <div class="pubDate">
+                    <app-heading 
+                        [headingText]="'გამოქვეყნების თარიღი *'"
+                        [headingStyle]="'heading-extra-sm align-normal'">
+                    </app-heading>
+                    
+                    <input type="date" formControlName="publicationDate"
+                        placeholder="12/12/2023"/>
+                    <span *ngIf="publicationDate.touched && publicationDate.dirty && publicationDate.errors?.['invalidDate']" 
+                        class="validation-error">
+                        სავალდებულოა
+                    </span>
+
                 </div>
-                <div>
-                    <label>კატეგორია *</label>
+                <!-- <div class="categories">
+                    <app-heading 
+                        [headingText]="'კატეგორია *'"
+                        [headingStyle]="'heading-extra-sm align-normal'">
+                    </app-heading>
                     <select [formControl]="categories">
                         <option value="" disabled selected>აირჩიე კატეგორია</option>
                         <option *ngFor="let opt of addBlogForm.get('categories')?.value"
@@ -41,7 +109,29 @@
                             {{opt.title}}
                         </option>
                     </select>
-                </div>
+                </div> -->
+            </div>
+            <div class="email">
+                <app-heading 
+                    [headingText]="'ელ-ფოსტა *'"
+                    [headingStyle]="'heading-extra-sm align-normal'">
+                </app-heading>
+
+                <app-input [control]="email"
+                    [placeholder]="'Example@redberry.ge'" 
+                    [type]="'email'"
+                    [emailValidator]="true"
+                    [customEmailValidator]="true">
+                </app-input>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+
+            </div>
+            <div class="blog-submit-btn-left">            
+                <app-submit-btn 
+                    [btnText]="'გამოქვეყნება'"
+                    [btnStyle]="'btn-purple btn-md'"
+                    [showBtn]="true"
+                    >
+                </app-submit-btn>
             </div>
         </form>
     </div>

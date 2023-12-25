@@ -11,6 +11,7 @@ export class GenericBtnComponent implements OnInit {
   @Output() openModal = new EventEmitter();
   @Output() closeModalAfterLogin = new EventEmitter();
   @Output() submitLoginForm = new EventEmitter();
+  @Output() submitAddBlogForm = new EventEmitter();
 
   @Input() btnText = '';
   @Input() btnStyle = '';
@@ -33,8 +34,8 @@ export class GenericBtnComponent implements OnInit {
     if(this.btnTypes === BtnActionTypesEnum.OPENMODAL){
       this.openModal.emit();
     }
-    else if(this.btnTypes === BtnActionTypesEnum.CLICKLOGIN) {
-      this.submitLoginForm.emit();
+    else if(this.btnTypes === BtnActionTypesEnum.ADDBLOG) {
+      this.submitAddBlogForm.emit();
     }
     else if(this.btnTypes === BtnActionTypesEnum.CLOSEMODALAFTERLOGIN) {
       this.closeModalAfterLogin.emit();

@@ -34,6 +34,10 @@ export class BlogService {
     this.currentBlogsSource.next(blogs);
   }
 
+  uploadBlog(formdata: any) {
+    return this.http.post(`${this.baseUrl}blogs`,formdata)
+  }
+
 
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TopicService } from './_services/topic.service';
 import { BlogService } from './_services/blog.service';
 import { ModalService } from './_services/modal.service';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,12 @@ export class AppComponent implements OnInit {
 
   constructor(
     private topicService: TopicService,private blogService: BlogService,
-    public modalService: ModalService) {}
+    public modalService: ModalService, private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.loadTopics();
     this.loadBlogs();
+    this.loadAuth();
       
 
   }
@@ -37,6 +39,16 @@ export class AppComponent implements OnInit {
       next: () => {
       }
     })
+  }
+
+  loadAuth() {
+    let auth = localStorage.getItem('auth');
+    if(auth !== null) {
+      let isLoggedIn = JSON.parse(auth);
+      if(isLoggedIn) {
+        this.accountService.setCurrentUser(isLoggedIn);
+      }
+    }
   }
 
 

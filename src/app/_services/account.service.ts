@@ -20,8 +20,6 @@ export class AccountService {
   login(email: string) {
     return this.http.post(`${this.baseUrl}login`,{email})
       
-      
-
   }
 
 

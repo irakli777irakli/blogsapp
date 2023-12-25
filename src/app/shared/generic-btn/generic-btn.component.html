@@ -1,7 +1,7 @@
 
 
 <button [ngClass]="btnStyle" [routerLink]="btnLink" *ngIf="showBtn" (click)="performAction()" 
-    type="{{typeOfBnt === 'submit' ? 'sumbit' : 'btn'}}" [disabled]="isFormDisabled" 
+    type="{{typeOfBnt === 'submit' ? 'sumbit' : 'button'}}" [disabled]="isFormDisabled" 
     >
     {{btnText}}
 </button>

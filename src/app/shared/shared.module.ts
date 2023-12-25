@@ -4,6 +4,7 @@ import { HeadingComponent } from './heading/heading.component';
 import { GenericBtnComponent } from './generic-btn/generic-btn.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SubmitBtnComponent } from './submit-btn/submit-btn.component';
 
 
 
@@ -11,7 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
   
     HeadingComponent,
-    GenericBtnComponent
+    GenericBtnComponent,
+    SubmitBtnComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     HeadingComponent,
-    GenericBtnComponent
+    GenericBtnComponent,
+    SubmitBtnComponent
   ]
 })
 export class SharedModule { }
