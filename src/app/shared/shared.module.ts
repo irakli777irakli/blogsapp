@@ -5,6 +5,8 @@ import { GenericBtnComponent } from './generic-btn/generic-btn.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubmitBtnComponent } from './submit-btn/submit-btn.component';
+import { CustomDropdownComponent } from './custom-dropdown/custom-dropdown.component';
+import { CustomDropdownBtnComponent } from './custom-dropdown-btn/custom-dropdown-btn.component';
 
 
 
@@ -13,16 +15,21 @@ import { SubmitBtnComponent } from './submit-btn/submit-btn.component';
   
     HeadingComponent,
     GenericBtnComponent,
-    SubmitBtnComponent
+    SubmitBtnComponent,
+    CustomDropdownComponent,
+    CustomDropdownBtnComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeadingComponent,
     GenericBtnComponent,
-    SubmitBtnComponent
+    SubmitBtnComponent,
+    CustomDropdownComponent,
+    CustomDropdownBtnComponent
   ]
 })
 export class SharedModule { }

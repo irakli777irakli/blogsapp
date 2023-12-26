@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateEmail } from '../_validators/email-validator';
 import { atLeastTwoWordsValidator } from '../_validators/author-validator';
 import { TopicService } from '../_services/topic.service';
-import { take } from 'rxjs';
+import { map, take } from 'rxjs';
 import { BtnActionTypesEnum } from '../_helpers/btnAction-helper';
 import { validateLanguage } from '../_validators/language-validator';
 import { noEmptySpace } from '../_validators/emptySpace-validator';
@@ -11,6 +11,7 @@ import { trimmedMinLength } from '../_validators/customMinLength-validator';
 import { BlogService } from '../_services/blog.service';
 import { fileRequired } from '../_validators/fileUploaded-validator';
 import { ValidateDate } from '../_validators/checkDate-validator';
+import { CustomDropdownService } from '../_services/custom-dropdown.service';
 
 @Component({
   selector: 'app-add-blog',
@@ -51,9 +52,9 @@ export class AddBlogComponent implements OnInit {
     
   ]);
 
-  // categories = new FormControl('', [
-  //   Validators.required
-  // ]);
+  categories = new FormControl('', [
+    Validators.required
+  ]);
 
   email = new FormControl('', [
     Validators.email,
@@ -64,7 +65,8 @@ export class AddBlogComponent implements OnInit {
   validateAuthor(control: FormControl) {
   }
 
-  constructor(private topicService: TopicService, private blogService: BlogService) {  }
+  constructor(public topicService: TopicService, private blogService: BlogService,
+      private customDrdService: CustomDropdownService) {  }
 
 
   ngOnInit(): void {
@@ -74,7 +76,7 @@ export class AddBlogComponent implements OnInit {
       blogDescription: this.blogDescription,
       author: this.author,
       publicationDate: this.publicationDate,
-      // categories: this.categories,
+      categories: this.categories,
       email: this.email
     })
 
@@ -86,25 +88,12 @@ export class AddBlogComponent implements OnInit {
     ValidateDate
       ])
 
-    // this.loadCategoriesData();
 
     
   }
 
 
-  loadCategoriesData() {
-    this.topicService.currentTopics$
-      .pipe(
-        take(1)
-      ).subscribe({
-        next: data => {
-          if(data) {
-            this.addBlogForm?.get('categories')?.setValue(data);
-            console.log(this.addBlogForm)
-          }
-        }
-      })
-  }
+  
 
 
   addBlog() {
@@ -115,7 +104,7 @@ export class AddBlogComponent implements OnInit {
        
         value.markAsTouched();
         value.markAsDirty();
-        value.updateValueAndValidity()
+        value.updateValueAndValidity();
       }
 
       console.log(this.addBlogForm?.value);
@@ -123,22 +112,32 @@ export class AddBlogComponent implements OnInit {
     };
 
 
-    // let formdata = new FormData();
-    // formdata.set("title",this.addBlogForm?.get('title')?.value);
-    // formdata.set("description",this.addBlogForm?.get('blogDescription')?.value);
-    // if(this.uploadedfile) {
-    //   formdata.set("image",this.uploadedfile);
-    // }
-    // formdata.set("author",this.addBlogForm?.get('author')?.value);
-    // formdata.set("publish_date",this.addBlogForm?.get('publicationDate')?.value);
-    // formdata.set("categories","[1,2,3,4,5]");
-    // formdata.set("email",this.addBlogForm?.get('email')?.value);
+    let formdata = new FormData();
+    formdata.set("title",this.addBlogForm?.get('title')?.value);
+    formdata.set("description",this.addBlogForm?.get('blogDescription')?.value);
+    if(this.uploadedfile) {
+      formdata.set("image",this.uploadedfile);
+    }
+    formdata.set("author",this.addBlogForm?.get('author')?.value);
+    formdata.set("publish_date",this.addBlogForm?.get('publicationDate')?.value);
+    let idArr;
+    this.getCategoryIds()
+    .subscribe({
+      next: categoryIds => {
+        idArr = JSON.stringify(categoryIds);
+      }
+    })
+    if(idArr){
 
-    // this.blogService.uploadBlog(formdata)
-    //   .subscribe({
-    //     next: (res) => console.log(res),
-    //     error: err => console.log(err)
-    //   })
+      formdata.set("categories",idArr);
+    }
+    formdata.set("email",this.addBlogForm?.get('email')?.value);
+
+    this.blogService.uploadBlog(formdata)
+      .subscribe({
+        next: (res) => console.log(res),
+        error: err => console.log(err)
+      })
   }
 
 
@@ -154,6 +153,18 @@ export class AddBlogComponent implements OnInit {
     
   }
 
+  getCategoryIds() {
+    return this.customDrdService.currentSelectedCategories$
+      .pipe(
+        take(1),
+        map(categories => {
+          const ids = categories.map(x => x.id.toString());
+          return ids;
+        })
+      )
+      
+  }
+
 
   removeImg() {
 
@@ -161,6 +172,9 @@ export class AddBlogComponent implements OnInit {
     
 
   }
+
+
+ 
 
 
 

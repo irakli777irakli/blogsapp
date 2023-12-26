@@ -16,6 +16,8 @@ export class TopicService {
   constructor(private http: HttpClient) { }
 
 
+  
+
   loadTopics() {
     if(this.currentTopicsSource.value !== null) {
       return of();
@@ -35,6 +37,33 @@ export class TopicService {
   setCurrentTopic(topics: Topic[]) {
     this.currentTopicsSource.next(topics);
   }
+
+  topicClicked(topic: Topic) {
+
+    let currentState = this.currentTopicsSource.value;
+    if(currentState) {
+
+      let itemIndex = currentState.findIndex(x => x.id === topic.id);
+      
+      if (itemIndex !== -1) {
+          // reverses in every click
+          let updatedItem = { ...currentState[itemIndex] };
+          
+          // Swap background_color and text_color
+          const { background_color, text_color, ...rest } = updatedItem;
+          updatedItem = { ...rest, text_color: background_color, background_color: text_color };
+  
+          // Update the existing item in the array
+          currentState[itemIndex] = updatedItem;
+  
+          // Update the state
+          this.currentTopicsSource.next([...currentState]);
+      } 
+    }
+    
+  }
+
+
 
 
 }

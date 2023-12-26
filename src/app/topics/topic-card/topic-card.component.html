@@ -2,7 +2,7 @@
 <div *ngIf="topic" class="topic-card-wrapper">
     <button 
         class="topic-card-btn"
-        [ngStyle]="{'backgroundColor': topic.text_color, 'color': topic.background_color}">
+        [ngStyle]="{'backgroundColor': topic.background_color , 'color': topic.text_color}">
         {{topic.title}}
     </button>
 </div>

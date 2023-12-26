@@ -49,10 +49,17 @@
     margin-top: 4.8rem;
 }
 
+
+
 .authro-and-title-wrapper, .description-wrapper, .pubDate-and-categories {
     margin-top: 3rem;
 
 } 
+
+
+.category-select {
+    width: 100%;
+}
 
 
 .authro-and-title-wrapper {
@@ -65,9 +72,13 @@
 
 .pubDate-and-categories {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
 
+}
+.custom-dropdown-wrapper {
+    width: 50%;
+    height: 100%;
 }
 
 

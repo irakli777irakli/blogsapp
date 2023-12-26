@@ -1,0 +1,38 @@
+
+
+<label for="cusSelect" class="customSelect-input" (click)="showCategories()">
+    <p class="customSelect-title"
+    *ngIf="(customDropDownService.currentSelectedCategories$ | async)?.length ===0">შეიყვანეთ სათაური</p>    
+    <span class="dropdown-icon"></span>
+
+    <div *ngIf="(customDropDownService.currentSelectedCategories$ | async) as selectedCategories" 
+        [ngClass]="{'selected-categories-list': selectedCategories.length > 2}">
+        <div class="selected-categories-list-inner">
+            <app-custom-dropdown-btn 
+            *ngFor="let selcat of selectedCategories"
+            [Category]="selcat"
+            [background_color]="selcat.background_color"
+            [text_color]="selcat.text_color"
+            (selectCategoryEmitter)="addCategory($event)">
+            
+        </app-custom-dropdown-btn>
+    </div>
+        
+    </div>
+</label>
+<input type="text" id="cusSelect" class="customSelect" [formControl]="control"/>
+<span *ngIf="control.touched && control.dirty && control.errors?.['required']" 
+    class="validation-error">
+    სავალდებულოა
+</span>
+<div class="category-list" *ngIf="show">
+    <app-custom-dropdown-btn
+        *ngFor="let categ of topicService.currentTopics$| async; let i = index"
+        [Category]="categ"
+        [background_color]="categ.text_color"
+        [text_color]="categ.background_color"
+        (selectCategoryEmitter)="addCategory($event)"
+    >
+    </app-custom-dropdown-btn>
+    
+</div>

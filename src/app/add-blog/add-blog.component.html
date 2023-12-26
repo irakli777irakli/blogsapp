@@ -35,7 +35,6 @@
                 </span>
     
             </div>
-
             <div class="authro-and-title-wrapper">
                 <div class="author-input">
                     <app-heading 
@@ -97,19 +96,11 @@
                     </span>
 
                 </div>
-                <!-- <div class="categories">
-                    <app-heading 
-                        [headingText]="'კატეგორია *'"
-                        [headingStyle]="'heading-extra-sm align-normal'">
-                    </app-heading>
-                    <select [formControl]="categories">
-                        <option value="" disabled selected>აირჩიე კატეგორია</option>
-                        <option *ngFor="let opt of addBlogForm.get('categories')?.value"
-                            [value]="opt.id">
-                            {{opt.title}}
-                        </option>
-                    </select>
-                </div> -->
+            <div class="custom-dropdown-wrapper">
+                    <app-custom-dropdown [control]="categories">
+                    </app-custom-dropdown>
+                </div>
+                
             </div>
             <div class="email">
                 <app-heading 
@@ -136,3 +127,17 @@
         </form>
     </div>
 </div>
+
+<!-- <div class="categories">
+                    <app-heading 
+                        [headingText]="'კატეგორია *'"
+                        [headingStyle]="'heading-extra-sm align-normal'">
+                    </app-heading>
+                    <select [formControl]="categories">
+                        <option value="" disabled selected>აირჩიე კატეგორია</option>
+                        <option *ngFor="let opt of addBlogForm.get('categories')?.value"
+                            [value]="opt.id">
+                            {{opt.title}}
+                        </option>
+                    </select>
+</div> -->

@@ -1,0 +1,95 @@
+
+
+.customSelect-input {
+    display: block;
+    width: 100%;
+    height: 5rem;
+    border-radius: 12px;
+    border: 1px solid rgb(59, 59, 59);
+    
+    position: relative;
+    cursor: pointer;
+}
+
+.customSelect-title {
+    position: absolute;
+    font-size: 1.8rem;
+    top: 25%;
+    left: 10%;
+    font-family: 'firago', sans-serif ;
+    color: #202020;
+}
+
+.selected-categories-list {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 90%;
+    overflow: hidden;
+}
+
+.selected-categories-list-inner {
+    width: 90%;
+    display: flex;
+    gap: 3rem;
+
+}
+
+.dropdown-icon {
+    position: absolute;
+    right: 5%;
+    top: 20%;
+    height: 15px;
+    width: 15px;
+    border-top: 4px solid #202020;
+    border-left: 4px solid #202020;
+    transform: rotate(225deg);
+    
+}
+
+.left {
+    transform: rotate(-90deg);
+}
+
+
+
+
+.customSelect {
+    display: none;
+}
+
+.category-list {
+    width: 100%;
+    padding: 2.4rem;
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(auto-fit,1fr);
+    align-items: center;
+    justify-items: center;
+    
+  }
+  
+
+  
+  input:focus {
+    border: 1px solid #5D37F3;
+}
+
+input.ng-invalid.ng-touched{
+    border: red 1px solid;
+    background-color: rgb(253, 242, 242);
+}
+
+
+
+input.ng-valid.ng-touched{
+    border: rgb(99, 216, 99) 1px solid;
+    background-color: rgb(207, 228, 207);
+}
+
+.validation-error {
+    color: red;
+    font-size: 1.4rem;
+    font-family: 'firago', sans-serif ;
+    font-weight: 500;
+}
