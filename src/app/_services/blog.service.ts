@@ -12,6 +12,10 @@ export class BlogService {
   private currentBlogsSource = new BehaviorSubject<Blog[] | null>(null);
   currentBlogs = this.currentBlogsSource.asObservable();
 
+
+  private currentFilteredBlogsSource = new BehaviorSubject<Blog[]>([]);
+  currentFilteredBlogs$ = this.currentFilteredBlogsSource.asObservable();
+
   constructor(private http: HttpClient) { }
 
 
@@ -39,7 +43,30 @@ export class BlogService {
   }
 
 
+  filterBlogs(categoryId: number,resetFilter: boolean) {
+    if(this.currentBlogsSource.value){
+      let clonedState = [...this.currentBlogsSource.value];
+      console.log(clonedState);
+      if(resetFilter) {
+        clonedState = clonedState.filter(blog => blog.categories.some(x => x.id === categoryId))
+          .sort((x,y) => y.id - x.id);
+
+      }else {
+        clonedState = clonedState.filter(blog => blog.categories.some(x => x.id !== categoryId))
+          .sort((x,y) => y.id - x.id);
+
+      }
+      console.log(clonedState);
+
+      this.currentFilteredBlogsSource.next(clonedState);
+      
+    }
+
+    }
+  }
 
 
 
-}
+
+
+

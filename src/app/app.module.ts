@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddBlogComponent } from './add-blog/add-blog.component';
 import { SharedModule } from './shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SuccessModalComponent } from './success-modal/success-modal.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ModalComponent,
     InputComponent,
     AddBlogComponent,
+    SuccessModalComponent,
   ],
   imports: [
     BrowserModule,

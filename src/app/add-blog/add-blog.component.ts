@@ -12,6 +12,7 @@ import { BlogService } from '../_services/blog.service';
 import { fileRequired } from '../_validators/fileUploaded-validator';
 import { ValidateDate } from '../_validators/checkDate-validator';
 import { CustomDropdownService } from '../_services/custom-dropdown.service';
+import { SuccessModalStateService } from '../_services/success-modal-state.service';
 
 @Component({
   selector: 'app-add-blog',
@@ -66,7 +67,8 @@ export class AddBlogComponent implements OnInit {
   }
 
   constructor(public topicService: TopicService, private blogService: BlogService,
-      private customDrdService: CustomDropdownService) {  }
+      private customDrdService: CustomDropdownService,
+      private successMsService: SuccessModalStateService) {  }
 
 
   ngOnInit(): void {
@@ -111,7 +113,7 @@ export class AddBlogComponent implements OnInit {
       return;
     };
 
-
+    this.successMsService.mutatiSuccessModal();
     let formdata = new FormData();
     formdata.set("title",this.addBlogForm?.get('title')?.value);
     formdata.set("description",this.addBlogForm?.get('blogDescription')?.value);
@@ -124,6 +126,7 @@ export class AddBlogComponent implements OnInit {
     this.getCategoryIds()
     .subscribe({
       next: categoryIds => {
+        this.topicService.resetClicked(categoryIds);
         idArr = JSON.stringify(categoryIds);
       }
     })
@@ -132,10 +135,13 @@ export class AddBlogComponent implements OnInit {
       formdata.set("categories",idArr);
     }
     formdata.set("email",this.addBlogForm?.get('email')?.value);
+    console.log(formdata)
 
     this.blogService.uploadBlog(formdata)
       .subscribe({
-        next: (res) => console.log(res),
+        next: () => {
+          this.customDrdService.resetSelectionList();
+        },
         error: err => console.log(err)
       })
   }
@@ -158,7 +164,7 @@ export class AddBlogComponent implements OnInit {
       .pipe(
         take(1),
         map(categories => {
-          const ids = categories.map(x => x.id.toString());
+          const ids = categories.map(x => x.id);
           return ids;
         })
       )

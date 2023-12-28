@@ -1,6 +1,11 @@
 <div class="topic-list">
     <div class="topic-list-inner">
-        <app-topic-card *ngFor="let topic of topicService.currentTopics$ | async" [topic]="topic">
-        </app-topic-card>
+        <app-custom-dropdown-btn 
+            *ngFor="let topic of topicService.currentTopics$ | async"
+            [Category]="topic"
+            [background_color]="topic.text_color"
+            [text_color]="topic.background_color"
+            (selectCategoryEmitter)="categorySelected($event)">
+        </app-custom-dropdown-btn>
     </div>
 </div>

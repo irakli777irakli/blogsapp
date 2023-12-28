@@ -39,6 +39,8 @@ export class GenericBtnComponent implements OnInit {
     }
     else if(this.btnTypes === BtnActionTypesEnum.CLOSEMODALAFTERLOGIN) {
       this.closeModalAfterLogin.emit();
+    }else if(this.btnTypes === BtnActionTypesEnum.CLOSEMODALAFTERSUCCESS) {
+      this.closeModalAfterLogin.emit();
     }
   }
 

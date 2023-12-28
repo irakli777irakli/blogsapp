@@ -64,6 +64,30 @@ export class TopicService {
   }
 
 
+  resetClicked(ids: number[]) {
+    let currentState = this.currentTopicsSource.value;
+    console.log(currentState);
+
+    currentState?.map(element => {
+      if(ids.includes(element.id)) {
+        const tempColor = element.background_color;
+        element.background_color = element.text_color;
+        element.text_color = tempColor;
+        return element;
+      }
+
+      return element;
+    })
+
+    console.log(currentState);
+    if(currentState) {
+      this.currentTopicsSource.next([...currentState]);
+
+    }
+
+  }
+
+
 
 
 }

@@ -18,6 +18,10 @@ export class CustomDropdownService {
    
   }
 
+  resetSelectionList() {
+    this.currentSelectedCategoriesSource.next([]);
+  }
+
   getNumberOfItems() {
     return this.currentSelectedCategoriesSource.value.length;
   }

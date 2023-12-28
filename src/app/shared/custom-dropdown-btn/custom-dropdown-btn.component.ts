@@ -7,6 +7,7 @@ import { Topic } from 'src/app/_models/topic';
   styleUrls: ['./custom-dropdown-btn.component.css']
 })
 export class CustomDropdownBtnComponent {
+  @Input() inDifferentSizes = false;
   @Input() Category: Topic | undefined;
   @Input() background_color = '';
   @Input() text_color = '';

@@ -1,5 +1,6 @@
 <app-nav></app-nav>
 <app-modal *ngIf="modalService.currentModalState$ | async"></app-modal>
+<app-success-modal *ngIf="successMdService.currentSuccessModalState$ | async"></app-success-modal>
 
 
 <router-outlet></router-outlet>

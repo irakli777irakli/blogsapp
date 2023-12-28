@@ -1,5 +1,5 @@
 <span  class="single-category" *ngIf="Category"
-    [ngClass]="{'full': Category.id % 2 == 1, 'partial': Category.id %2 ==0}"
+    [ngClass]="{'full': inDifferentSizes&& Category.id % 2 == 1, 'partial': inDifferentSizes && Category.id %2 ==0}"
      [ngStyle]="{'backgroundColor': background_color , 'color': text_color}"
      (click)="selectCategory()">
         {{Category.title}}

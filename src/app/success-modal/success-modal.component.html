@@ -1,0 +1,28 @@
+
+<div class="modal">
+    <div class="inner-modal">
+        <span (click)="closeModalAndNavigate()" class="modal-close">x</span>
+
+
+        
+        <div class="modal-success-content">
+            <div class="success-symbol-wrapper">
+                <img class="success-symbol" src="../../assets/tick-circle.png" alt="okstatus"/>
+            </div>
+            <app-heading 
+            [headingText]="'წარმატებული ავტორიზაცია'"
+            [headingStyle]="'heading-sm margin-bottom-lg'"></app-heading>
+        </div>
+        <app-generic-btn
+            [btnText]="'კარგი'"
+            [btnStyle]="'btn-purple btn-lg margin-top-lg'"
+            [showBtn]="true"
+            [typeOfBnt]="'button'"
+            [btnTypes]="closeModalAfterSuccess"
+            (closeModalAfterLogin)="closeModalAndNavigate()"
+        >
+        </app-generic-btn>
+    
+        
+    </div>
+</div>
