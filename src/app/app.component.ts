@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     this.topicService.loadTopics()
     .subscribe({
       next: () => {
-                  
+             
       }
     })
   }

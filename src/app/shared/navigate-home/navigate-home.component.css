@@ -1,0 +1,30 @@
+.arrow-left {
+    position: absolute;
+    top: 2%;
+    left: 10%;
+}
+
+.arr {
+    position: relative;
+    background-color: rgb(218, 218, 218);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.arr div {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-top: 4px solid #202020;
+    border-left: 4px solid #202020;
+    transform: rotate(45deg);
+    left: 13.75px;
+    top: 17.5px;
+}
+
+.left {
+    transform: rotate(-90deg);
+}

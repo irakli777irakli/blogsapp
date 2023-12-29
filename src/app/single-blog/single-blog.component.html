@@ -1,0 +1,30 @@
+
+<app-navigate-home></app-navigate-home>
+<div class="single-blog">
+    <div *ngIf="blogService.currentMainBlog$ | async as mainBlog" >
+        <app-blog-card-top 
+            [imageSource]="mainBlog.image"
+            [author]="mainBlog.author"
+            [publish_date]="mainBlog.publish_date"
+            [blogAuthorEmail]="mainBlog.email">
+        </app-blog-card-top>
+        <div>
+            <app-heading
+                [headingText]="mainBlog.title"
+                headingStyle="'font-bold heading-md mg-top-lg text-left'">
+            </app-heading>
+            <div  class="blogflex">
+                <app-topic-card *ngFor="let category of mainBlog.categories" [topic]="category" >
+                </app-topic-card>
+            </div>
+        </div>
+        <p class="blog-description">
+            {{mainBlog.description}}
+        </p>
+    </div>
+
+</div>
+<app-related-blogs *ngIf="blogService.currentRelatedSlicedBlogs$ | async as relatedBlogs" 
+    [relatedBlogs]="relatedBlogs">
+</app-related-blogs>
+

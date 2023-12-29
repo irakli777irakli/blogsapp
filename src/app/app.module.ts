@@ -19,6 +19,9 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
 import { SharedModule } from './shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SuccessModalComponent } from './success-modal/success-modal.component';
+import { SingleBlogComponent } from './single-blog/single-blog.component';
+import { BlogCardTopComponent } from './blogs/blog-card/blog-card-top/blog-card-top.component';
+import { RelatedBlogsComponent } from './blogs/related-blogs/related-blogs.component';
 
 
 @NgModule({
@@ -35,6 +38,9 @@ import { SuccessModalComponent } from './success-modal/success-modal.component';
     InputComponent,
     AddBlogComponent,
     SuccessModalComponent,
+    SingleBlogComponent,
+    BlogCardTopComponent,
+    RelatedBlogsComponent,
   ],
   imports: [
     BrowserModule,

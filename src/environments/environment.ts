@@ -1,6 +1,6 @@
 export const environment = {
     apiUrl: 'https://api.blog.redberryinternship.ge/api/',
-    token: '451a7fad66f0d84cf74803b47ac8e609b39553cff55ff36ddcd538bb753eb5d1',
+    token: 'f65b9db95826cc6636247081397034757b51db046274d44a5587ccd36c9af240',
 
 
 };

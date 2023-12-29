@@ -1,20 +1,24 @@
-
-<div *ngIf="blog" class="blog">
-    <div class="blog-img-wrapper">
-        <img class="blog-img" src="{{blog.image}}" alt="{{blog.author}}" />
-    </div>
-    <div class="author-and-date">
-        <p class="blog-author">{{blog.author}}</p>
-        <span class="blog-pubDate">{{blog.publish_date}}</span>
-    </div>
+<div *ngIf="blog" class="blog" [hidden]="compareTime()">
+    <app-blog-card-top 
+        [imageSource]="blog.image"
+        [author]="blog.author"
+        [publish_date]="blog.publish_date">
+    </app-blog-card-top>
     <div class="title-and-topics">
-        <h4 class="blog-title">{{blog.title}}</h4>
+        <app-heading
+            [headingText]="blog.title"
+            [headingStyle]="'font-bold heading-md mg-top-lg text-left'">
+        </app-heading>
         <div  class="blogflex">
-            <app-topic-card *ngFor="let category of blog.categories" [topic]="category" ></app-topic-card>
+            <app-topic-card 
+                *ngFor="let category of blog.categories" 
+                [topic]="category" 
+            >
+            </app-topic-card>
         </div>
     </div>
     <p class="blog-description">{{blog.description.substring(0,120)}}</p>
-    <button class="see-more">სრულად ნახვა <span class="rotate-symbol">&uarr;</span></button>
+    <button class="see-more" routerLink="/blog/{{blog.id}}">სრულად ნახვა <span class="rotate-symbol">&uarr;</span></button>
 
 
 </div>

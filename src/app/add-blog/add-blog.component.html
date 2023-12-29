@@ -1,7 +1,5 @@
 
-<div class="arrow-left">
-    <div class="arr left" [routerLink]="'/'"><div></div></div>
-</div>
+<app-navigate-home></app-navigate-home>
 <div class="add-blog">
     <div class="add-blog-inner" *ngIf="addBlogForm">
         <app-heading 
@@ -128,16 +126,3 @@
     </div>
 </div>
 
-<!-- <div class="categories">
-                    <app-heading 
-                        [headingText]="'კატეგორია *'"
-                        [headingStyle]="'heading-extra-sm align-normal'">
-                    </app-heading>
-                    <select [formControl]="categories">
-                        <option value="" disabled selected>აირჩიე კატეგორია</option>
-                        <option *ngFor="let opt of addBlogForm.get('categories')?.value"
-                            [value]="opt.id">
-                            {{opt.title}}
-                        </option>
-                    </select>
-</div> -->

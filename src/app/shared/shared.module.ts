@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubmitBtnComponent } from './submit-btn/submit-btn.component';
 import { CustomDropdownComponent } from './custom-dropdown/custom-dropdown.component';
 import { CustomDropdownBtnComponent } from './custom-dropdown-btn/custom-dropdown-btn.component';
+import { NavigateHomeComponent } from './navigate-home/navigate-home.component';
+import { NextPrevBtnComponent } from './next-prev-btn/next-prev-btn.component';
 
 
 
@@ -17,7 +19,9 @@ import { CustomDropdownBtnComponent } from './custom-dropdown-btn/custom-dropdow
     GenericBtnComponent,
     SubmitBtnComponent,
     CustomDropdownComponent,
-    CustomDropdownBtnComponent
+    CustomDropdownBtnComponent,
+    NavigateHomeComponent,
+    NextPrevBtnComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,9 @@ import { CustomDropdownBtnComponent } from './custom-dropdown-btn/custom-dropdow
     GenericBtnComponent,
     SubmitBtnComponent,
     CustomDropdownComponent,
-    CustomDropdownBtnComponent
+    CustomDropdownBtnComponent,
+    NavigateHomeComponent,
+    NextPrevBtnComponent
   ]
 })
 export class SharedModule { }

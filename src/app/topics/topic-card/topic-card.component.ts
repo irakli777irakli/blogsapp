@@ -8,7 +8,6 @@ import { Topic } from 'src/app/_models/topic';
 })
 export class TopicCardComponent implements OnInit {
   @Input() topic: Topic | undefined;
-
   constructor() {}
 
   ngOnInit(): void {

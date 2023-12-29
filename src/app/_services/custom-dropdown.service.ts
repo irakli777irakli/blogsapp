@@ -32,12 +32,12 @@ export class CustomDropdownService {
     if(item !== undefined) {
       currentState = currentState.filter(x => x.id !== topic.id)
       this.currentSelectedCategoriesSource.next([...currentState]);
-      this.topicService.topicClicked(topic);
+      this.topicService.topicClicked(topic,true);
 
       return;
 
     }
-    this.topicService.topicClicked(topic);
+    this.topicService.topicClicked(topic,true);
     this.currentSelectedCategoriesSource.next([...currentState,topic])
   }
 

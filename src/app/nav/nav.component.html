@@ -1,9 +1,9 @@
-<nav class="navbar">
+<nav class="navbar" [ngClass]="{'content-center':modalService.currentRedberryLogo$ | async}">
     <div>
 
         <img [routerLink]="'/'" src="../../assets/LOGO-02 3.png" alt="logo"/>
     </div>
-    <div>
+    <div *ngIf="!(modalService.currentRedberryLogo$ | async)">
         <div>
             <app-generic-btn 
                 [btnText]="'შესვლა'"
@@ -18,10 +18,6 @@
                 [showBtn]="(accountService.currentUser$ | async)"
                 [btnLink]="'/add-blog'">
             </app-generic-btn>
-            
-            <!-- <button *ngIf="!(accountService.currentUser$ | async)" class="nav-btn" (click)="openModal()">შესვლა</button>
-            <button *ngIf="(accountService.currentUser$ | async)" class="nav-btn" 
-                [routerLink]="'/add-blog'">დამატება</button> -->
         </div>
     </div>
 </nav>

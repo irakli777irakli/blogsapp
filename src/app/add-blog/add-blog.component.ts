@@ -88,7 +88,19 @@ export class AddBlogComponent implements OnInit {
       ?.addValidators([
         Validators.required,
     ValidateDate
-      ])
+      ]);
+
+    
+    this.addBlogForm.valueChanges.subscribe({
+      next: value => {
+        localStorage.setItem('formInputs',JSON.stringify(value));
+      }
+    })
+
+    const savedFormValues = localStorage.getItem('formInputs');
+    if (savedFormValues) {
+      this.addBlogForm.patchValue(JSON.parse(savedFormValues));
+    }
 
 
     
@@ -101,7 +113,6 @@ export class AddBlogComponent implements OnInit {
   addBlog() {
     if(this.addBlogForm?.invalid) {
       const formControls = Object.entries(this.addBlogForm.controls);
-      console.log(formControls)
       for(const [key, value] of formControls) {
        
         value.markAsTouched();
@@ -109,7 +120,6 @@ export class AddBlogComponent implements OnInit {
         value.updateValueAndValidity();
       }
 
-      console.log(this.addBlogForm?.value);
       return;
     };
 
@@ -135,12 +145,16 @@ export class AddBlogComponent implements OnInit {
       formdata.set("categories",idArr);
     }
     formdata.set("email",this.addBlogForm?.get('email')?.value);
-    console.log(formdata)
 
     this.blogService.uploadBlog(formdata)
       .subscribe({
         next: () => {
           this.customDrdService.resetSelectionList();
+          this.blogService.loadBlogs(true)
+            .subscribe({
+              next: () => {
+              }
+            });
         },
         error: err => console.log(err)
       })

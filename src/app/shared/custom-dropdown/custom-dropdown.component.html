@@ -2,7 +2,9 @@
 
 <label for="cusSelect" class="customSelect-input" (click)="showCategories()">
     <p class="customSelect-title"
-    *ngIf="(customDropDownService.currentSelectedCategories$ | async)?.length ===0">შეიყვანეთ სათაური</p>    
+        *ngIf="(customDropDownService.currentSelectedCategories$ | async)?.length ===0">
+        შეიყვანეთ სათაური
+    </p>    
     <span class="dropdown-icon"></span>
 
     <div *ngIf="(customDropDownService.currentSelectedCategories$ | async) as selectedCategories" 
@@ -27,7 +29,7 @@
 </span>
 <div class="category-list" *ngIf="show">
     <app-custom-dropdown-btn
-        *ngFor="let categ of topicService.currentTopics$| async; let i = index"
+        *ngFor="let categ of topicService.currentCustomDropDownTopics$| async; let i = index"
         [Category]="categ"
         [background_color]="categ.text_color"
         [text_color]="categ.background_color"

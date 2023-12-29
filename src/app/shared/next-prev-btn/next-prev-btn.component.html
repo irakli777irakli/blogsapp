@@ -1,0 +1,14 @@
+
+<ng-container *ngIf="nextBtn; else prevbtn">
+    <div class="arrow-right">
+        <div class="arr right" (click)="nextBtnClicked()"><div></div></div>
+    </div>
+</ng-container>
+
+<ng-template #prevbtn>
+    <div class="arrow-left">
+        <div class="arr left" (click)="prevBtnClicked()"><div></div></div>
+    </div>
+
+</ng-template>
+

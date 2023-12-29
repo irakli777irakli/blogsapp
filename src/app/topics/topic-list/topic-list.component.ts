@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Blog } from 'src/app/_models/blog';
 import { Topic } from 'src/app/_models/topic';
 import { BlogService } from 'src/app/_services/blog.service';
@@ -19,15 +19,34 @@ export class TopicListComponent implements OnInit {
   }
 
   categorySelected(category: Topic) {
+    
     this.topicService.topicClicked(category);
+
+    // applies filter
     if(category.background_color === '#FFFFFF'){
-      this.blogService.filterBlogs(category.id,false);
-
+      this.topicService.removeCurrentFilterBtn(category);
+      this.applyOrRemoveFilter(true);
+      
     }else {
-      this.blogService.filterBlogs(category.id,true);
-
+      // removes filter
+      this.topicService.setCurrentFilterBtns(category);
+      this.applyOrRemoveFilter();
     }
     
+  }
+  // false means apply
+  applyOrRemoveFilter(apply = false) {
+    this.topicService.currentFIlterBtns$
+        .pipe(
+          take(1)
+        ).subscribe({
+          next: (filterbtns) => {
+            let categoryIdsSet = new Set(filterbtns.map(fbtn => fbtn.id));
+            let categoryIds: number[] = [...categoryIdsSet];
+            this.blogService.filterBlogs(categoryIds,apply);
+            
+          }
+        })
   }
 
 

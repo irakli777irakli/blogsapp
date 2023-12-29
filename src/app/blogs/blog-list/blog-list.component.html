@@ -1,8 +1,8 @@
 
 
 <div class="blogs-wrapper">
-    <ng-container *ngIf="blogService.currentFilteredBlogs$ | async as filterBlogs">
-        <ng-container *ngIf="filterBlogs.length > 0; else fullListofBlogs">
+    <ng-container *ngIf="(blogService.currentFilteredBlogs$ | async) as filterBlogs">
+        <ng-container *ngIf="(filterBlogs.length > 0) || (topicSerivce.currentFIlterBtns$ | async)?.length !==0; else fullListofBlogs">
             <app-blog-card *ngFor="let blog of filterBlogs" [blog]="blog"></app-blog-card>
         </ng-container>
     </ng-container>

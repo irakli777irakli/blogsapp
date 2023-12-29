@@ -12,9 +12,17 @@ export class BlogCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-
+    this.compareTime();
   }
   
+  compareTime() {
+    if(this.blog?.publish_date) {
+      let blogDate = new Date(this.blog?.publish_date);
+      let currentDate = new Date();
+      if(blogDate < currentDate) return true;
 
+    }
+    return false;
+  }
 
 }

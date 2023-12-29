@@ -1,0 +1,30 @@
+
+:host {
+    position: relative;
+}
+
+.single-blog {
+    width: 74rem;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.blogflex {
+    margin-top: 1.8rem;
+    display: flex;/* Adjust minimum and maximum width as needed */
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap between grid items as needed */
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.blog-description {
+    text-align: left;
+    margin-top: 1.6rem;
+    color: #4d4d4e;
+    font-family: 'firago', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }

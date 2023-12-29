@@ -1,0 +1,30 @@
+<div class="blog-img-wrapper">
+    <img class="blog-img" src="{{imageSource}}" alt="{{author}}" />
+</div>
+<div class="author-and-date">
+    <app-heading 
+        [headingText]="author"
+        [headingStyle]="'heading-sm font-mid'">
+    </app-heading>
+    <ng-container *ngIf="!blogAuthorEmail; else withauthormail">
+        <app-heading 
+            [headingText]="publish_date"
+            [headingStyle]="'heading-extra-sm font-light publish-date'">
+        </app-heading>
+
+    </ng-container>
+    <ng-template #withauthormail>
+        <div>
+            <app-heading
+                [headingText]="publish_date"
+                [headingStyle]="'heading-extra-sm font-light publish-date oneline'">
+            </app-heading>
+            -
+            <app-heading
+                [headingText]="blogAuthorEmail"
+                [headingStyle]="'heading-extra-sm font-light publish-date margin-right-md oneline'">
+            </app-heading>
+        </div>
+    </ng-template>
+    
+</div>

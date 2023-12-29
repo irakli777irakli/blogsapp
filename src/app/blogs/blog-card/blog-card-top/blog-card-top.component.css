@@ -1,0 +1,23 @@
+:host {
+    width: 100%;
+}
+.blog-img-wrapper {
+    width: 100%;
+}
+
+.blog-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%; /* Adjust this value if needed */
+  object-position: center;
+  border-radius: 5px;
+}
+
+.author-and-date {
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}

@@ -9,8 +9,18 @@ import { Topic, TopicWrapper } from '../_models/topic';
 })
 export class TopicService {
   baseUrl = environment.apiUrl;
+  
+  
   private currentTopicsSource = new BehaviorSubject<Topic[] | null>(null);
   public currentTopics$ = this.currentTopicsSource.asObservable();
+
+
+  private currentCustomDropDownTopicsSource = new BehaviorSubject<Topic[] | null>(null);
+  currentCustomDropDownTopics$ = this.currentCustomDropDownTopicsSource.asObservable();
+
+
+  private currentFilterBtnsSource = new BehaviorSubject<Topic[]>([]);
+  currentFIlterBtns$ = this.currentFilterBtnsSource.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -22,11 +32,15 @@ export class TopicService {
     if(this.currentTopicsSource.value !== null) {
       return of();
     }
+   
     return this.http.get<TopicWrapper>(`${this.baseUrl}categories`)
       .pipe(
         map((topicWrapper: TopicWrapper) => {
           if(topicWrapper.data.length > 0) {
             this.setCurrentTopic(topicWrapper.data);
+            this.currentCustomDropDownTopicsSource.next(topicWrapper.data);
+
+            
           }
 
         })
@@ -35,38 +49,62 @@ export class TopicService {
 
 
   setCurrentTopic(topics: Topic[]) {
-    this.currentTopicsSource.next(topics);
+    this.currentTopicsSource.next(topics)
   }
 
-  topicClicked(topic: Topic) {
+  setCurrentFilterBtns(topic: Topic) {
 
-    let currentState = this.currentTopicsSource.value;
-    if(currentState) {
+    this.currentFilterBtnsSource.next([...this.currentFilterBtnsSource.value,topic]);
+    
+  }
 
-      let itemIndex = currentState.findIndex(x => x.id === topic.id);
-      
-      if (itemIndex !== -1) {
-          // reverses in every click
-          let updatedItem = { ...currentState[itemIndex] };
-          
-          // Swap background_color and text_color
-          const { background_color, text_color, ...rest } = updatedItem;
-          updatedItem = { ...rest, text_color: background_color, background_color: text_color };
-  
-          // Update the existing item in the array
-          currentState[itemIndex] = updatedItem;
-  
-          // Update the state
-          this.currentTopicsSource.next([...currentState]);
-      } 
+  removeCurrentFilterBtn(topic: Topic) {
+    let currenFilterBtnStyle = this.currentFilterBtnsSource.value;
+    this.currentFilterBtnsSource.next([...currenFilterBtnStyle.filter(x => x.id !== topic.id)]);
+
+  }
+
+
+  topicClicked(topic: Topic, customDropdown = false) {
+    let currentState;
+
+    if (customDropdown) {
+      currentState = this.currentCustomDropDownTopicsSource.value;
+
+    } else {
+      currentState = this.currentTopicsSource.value;
     }
+  
+    if (currentState) {
+      let itemIndex = currentState.findIndex((x) => x.id === topic.id);
+  
+      if (itemIndex !== -1) {
+        let updatedItem = { ...currentState[itemIndex] };
+  
+        // Swap background_color and text_color
+        const { background_color, text_color, ...rest } = updatedItem;
+        updatedItem = { ...rest, text_color: background_color, background_color: text_color };
+  
+        // Update the existing item in the array
+        currentState[itemIndex] = updatedItem;
+  
+        // Update the state based on the customDropdown parameter
+        if (customDropdown) {
+          this.currentCustomDropDownTopicsSource.next([...currentState]);
+
+        } else {
+          this.currentTopicsSource.next([...currentState]);
+
+        }
+      }
+    }
+
     
   }
 
 
   resetClicked(ids: number[]) {
     let currentState = this.currentTopicsSource.value;
-    console.log(currentState);
 
     currentState?.map(element => {
       if(ids.includes(element.id)) {
@@ -79,7 +117,6 @@ export class TopicService {
       return element;
     })
 
-    console.log(currentState);
     if(currentState) {
       this.currentTopicsSource.next([...currentState]);
 

@@ -1,0 +1,21 @@
+
+
+<div class="relatedBlog">
+    <app-heading
+        [headingText]="'მსგავსი სტატიები'"
+        [headingStyle]="'heading-md font-mid'">
+    </app-heading>
+    <app-next-prev-btn 
+        [prevBtn]="true">
+    </app-next-prev-btn>
+    <app-next-prev-btn
+        [nextBtn]="true">
+    </app-next-prev-btn>
+    <div class="relatedBlogs-wrapper">
+        <ng-container *ngIf="relatedBlogs.length > 0">
+            <app-blog-card *ngFor="let blog of relatedBlogs" [blog]="blog"></app-blog-card>
+        </ng-container>
+    </div>
+
+</div>
+
